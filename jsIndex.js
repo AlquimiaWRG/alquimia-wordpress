@@ -1,7 +1,9 @@
 "use strict";
 
 module.exports = function(defaultJs) {
-  defaultJs.getElement('alquimia').wp = true;
+  var alquimiaConfig = defaultJs.getElement('alquimia')
+  if (alquimiaConfig) alquimiaConfig.wp = true;
+
   defaultJs.getElement('configs').push(
     "module.constant('SERVER', 'http://localhost/" + alquimia.config.appName.dashed + "/admin/');",
     "module.config(['WPApiProvider', 'SERVER', function(WPApiProvider, SERVER) {",
