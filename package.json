@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Basic support for Wordpress.",
   "dependencies": {},
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/AlquimiaWRG/alquimia-wordpress.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
