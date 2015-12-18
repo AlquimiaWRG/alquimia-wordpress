@@ -52,6 +52,9 @@ module.exports = function(done) {
       alquimia.del('wp-sample');
       alquimia.del('wp-void');
 
+      fs.mkdirSync('app/src/wordpress');
+      alquimia.copy(__dirname + '/assets/wordpress', 'app/src/wordpress');
+
       done();
     });
   });

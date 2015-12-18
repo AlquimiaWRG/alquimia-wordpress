@@ -1,8 +1,10 @@
 {
   "name": "alquimia-wordpress",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Basic support for Wordpress.",
-  "dependencies": {},
+  "dependencies": {
+    "alquimia-angular": ""
+  },
   "repository" : {
     "type" : "git",
     "url" : "https://github.com/AlquimiaWRG/alquimia-wordpress.git"
