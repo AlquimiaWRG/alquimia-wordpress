@@ -9,9 +9,6 @@ module.exports = function(done) {
   fs.mkdirSync('wp-sample');
   alquimia.copy(__dirname + '/assets/wp-sample', 'wp-sample');
 
-  fs.mkdirSync('wp-void');
-  alquimia.copy(__dirname + '/assets/wp-void', 'wp-void');
-
   print('\nDownloading Wordpress...\n');
 
   alquimia.Downloader.download('https://wordpress.org/latest.zip', function(buffer) {
@@ -24,11 +21,9 @@ module.exports = function(done) {
       var wordpressPath = 'admin/wp-content';
       var alquimiaPath = wordpressPath + '/plugins/wp-alquimia';
       var pluginPath = wordpressPath + '/plugins/' + alquimia.config.appName.dashed;
-      var voidPath = wordpressPath + '/themes/void';
 
       fs.mkdirSync(alquimiaPath);
       fs.mkdirSync(pluginPath);
-      fs.mkdirSync(voidPath);
 
       var copy = function copy(file) {
         var content = fs.readFileSync(file, 'utf8');
@@ -42,7 +37,6 @@ module.exports = function(done) {
 
       alquimia.copy('wp-alquimia', alquimiaPath, copy);
       alquimia.copy('wp-sample', pluginPath, copy);
-      alquimia.copy('wp-void', voidPath, copy);
 
       fs.renameSync(pluginPath + '/sample.php', pluginPath + '/' + alquimia.config.appName.dashed + '.php');
       fs.renameSync(pluginPath + '/classes/class-sample.php',
@@ -50,7 +44,6 @@ module.exports = function(done) {
 
       alquimia.del('wp-alquimia');
       alquimia.del('wp-sample');
-      alquimia.del('wp-void');
 
       fs.mkdirSync('app/src/wordpress');
       alquimia.copy(__dirname + '/assets/wordpress', 'app/src/wordpress');
