@@ -2,6 +2,8 @@
 
 module.exports = function(done) {
   var fs = require('fs');
+  var appDir = alquimia.getPath('appDir');
+  var scriptsDir = alquimia.getPath('scriptsDir');
 
   fs.mkdirSync('wp-alquimia');
   alquimia.copy(__dirname + '/assets/wp-alquimia', 'wp-alquimia');
@@ -16,7 +18,7 @@ module.exports = function(done) {
       fs.renameSync('wordpress', 'admin');
 
       clear();
-      print('Moving Wordpress plugins and themes...\n');
+      print('Moving Wordpress plugins...\n');
 
       var wordpressPath = 'admin/wp-content';
       var alquimiaPath = wordpressPath + '/plugins/wp-alquimia';
@@ -45,8 +47,10 @@ module.exports = function(done) {
       alquimia.del('wp-alquimia');
       alquimia.del('wp-sample');
 
-      fs.mkdirSync('app/src/wordpress');
-      alquimia.copy(__dirname + '/assets/wordpress', 'app/src/wordpress');
+      fs.mkdirSync(appDir + '/' + scriptsDir + '/wordpress');
+      alquimia.copy(__dirname + '/assets/wordpress', appDir + '/' + scriptsDir + '/wordpress');
+
+      alquimia.config.SERVER = 'http://localhost/' + alquimia.config.appName.dashed + '/admin/';
 
       done();
     });
